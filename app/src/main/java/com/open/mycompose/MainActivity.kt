@@ -11,7 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,8 +35,10 @@ class MainActivity : ComponentActivity() {
     }
 
 
+
     @Composable
     fun MessageCard(msg: Message) {
+
         Card(modifier = Modifier.padding(all = 10.dp)) {
             Column(modifier = Modifier.padding(10.dp)) {
                 Row(
@@ -75,10 +77,14 @@ class MainActivity : ComponentActivity() {
                     }
 
                 }
+                var text by remember { mutableStateOf("Hello") }
+                var i by remember {
+                    mutableStateOf(1)
+                }
                 Spacer(modifier = Modifier.padding(top = 5.dp, end = 5.dp))
                 Row(){
                     Text(
-                        text = "正文主要内容部分",
+                        text = text,
                         style = MaterialTheme.typography.body1
                     )
                 }
@@ -88,7 +94,12 @@ class MainActivity : ComponentActivity() {
                         transformations(CircleCropTransformation())},
                     data = "https://img2.baidu.com/it/u=3255162423,1467500944&fm=253&fmt=auto&app=138&f=JPEG?w=587&h=500"),
                     contentDescription = null,
-                    modifier = Modifier.size(100.dp).clip(CircleShape))
+                    modifier = Modifier
+                        .size(100.dp)
+                        .padding(10.dp)
+                        .clickable {
+                            text = "你好" + (i++)
+                        })
 
                 Row(modifier = Modifier.padding(top = 10.dp)){
                     Text(
