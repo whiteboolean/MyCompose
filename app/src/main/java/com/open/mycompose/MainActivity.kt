@@ -78,9 +78,9 @@ class MainActivity : ComponentActivity() {
 
                 }
                 var text by remember { mutableStateOf("Hello") }
-                var i by remember {
-                    mutableStateOf(1)
-                }
+                var i by remember { mutableStateOf(1) }
+
+
                 Spacer(modifier = Modifier.padding(top = 5.dp, end = 5.dp))
                 Row(){
                     Text(
@@ -96,14 +96,13 @@ class MainActivity : ComponentActivity() {
                     contentDescription = null,
                     modifier = Modifier
                         .size(100.dp)
-                        .padding(10.dp)
+                        .padding(0.dp,10.dp,10.dp,10.dp)
                         .clickable {
                             text = "你好" + (i++)
                         })
 
                 Row(modifier = Modifier.padding(top = 10.dp)){
-                    Text(
-                        text = "底部标题"
+                    Text(text = "底部标题"
                     )
                 }
             }
